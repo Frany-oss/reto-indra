@@ -2,6 +2,16 @@ service: character-service
 
 frameworkVersion: "3"
 
+plugins:
+  - serverless-openapi-documenter
+custom:
+  documentation:
+    api:
+      info:
+        version: "1"
+        title: "Star Wars API"
+        description: "Star Wars Characters API"
+
 provider:
   name: aws
   runtime: nodejs18.x
