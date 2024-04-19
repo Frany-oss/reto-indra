@@ -1,0 +1,82 @@
+service: character-service
+
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: dev
+  region: us-east-1
+  environment:
+    CHARACTER_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:PostItem
+      Resource: "*"
+
+resources:
+  Resources:
+    CharacterTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: Character
+        AttributeDefinitions:
+          - AttributeName: "id"
+            AttributeType: "S"
+        KeySchema:
+          - AttributeName: "id"
+            KeyType: "HASH"
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+
+functions:
+  uploadCharacter:
+    handler: api/character.upload
+    memorySize: 128
+    description: Upload Star Wars character
+    events:
+      - http:
+          path: character
+          method: post
+
+  getByIdCharacter:
+    handler: api/character.getById
+    memorySize: 128
+    description: Get Star Wars character by ID
+    events:
+      - http:
+          path: character/{id}
+          method: get
+
+  getAllCharacters:
+    handler: api/character.getAll
+    memorySize: 128
+    description: Get all Star Wars characters
+    events:
+      - http:
+          path: characters
+          method: get
+
+  getAllCharactersSwapi:
+    handler: api/character.getAllCharactersFromSWAPI
+    memorySize: 128
+    description: Get all characters from SWAPI
+    events:
+      - http:
+          path: swapi/characters
+          method: get
+
+  deleteCharacter:
+    handler: api/character.deleteCharacter
+    memorySize: 128
+    description: Delete Star Wars character by ID
+    events:
+      - http:
+          path: character/{id}
+          method: delete
