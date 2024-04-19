@@ -16,7 +16,7 @@ describe("deleteCharacter function", () => {
     // Mock del evento HTTP con un ID válido proporcionado
     const mockEvent = {
       pathParameters: {
-        id: "edae2d3e-dc82-4cf3-8678-92d4896bcdde",
+        id: "ba89583b-9601-4716-811d-e6f58a5cca74",
       },
     };
 
@@ -28,7 +28,7 @@ describe("deleteCharacter function", () => {
     // Mock de DynamoDB.get para simular la existencia del personaje con el ID proporcionado
     jest.spyOn(dynamoDb, "get").mockReturnValue({
       promise: jest.fn().mockResolvedValue({
-        Item: { id: "edae2d3e-dc82-4cf3-8678-92d4896bcdde" },
+        Item: { id: "ba89583b-9601-4716-811d-e6f58a5cca74" },
       }),
     });
 
