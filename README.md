@@ -80,5 +80,6 @@ Se han realizado un total de 8 pruebas unitarias, testeando no solo el correcto 
 npm test
 ```
 
-
+## Swagger Documentation
+https://2mbdl42de8.execute-api.us-east-1.amazonaws.com/dev/swagger
 
