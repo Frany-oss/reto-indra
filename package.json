@@ -6,7 +6,10 @@
     "aws-sdk": "^2.1602.0",
     "axios": "^1.6.8",
     "bluebird": "^3.7.2",
+    "express": "^4.19.2",
     "serverless": "^3.38.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {

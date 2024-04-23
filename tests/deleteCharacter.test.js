@@ -1,4 +1,4 @@
-const { deleteCharacter } = require("../api/character");
+const { deleteCharacter } = require("../api/character/services/deleteCharacter");
 
 const dynamoDb = {
   delete: jest.fn(),

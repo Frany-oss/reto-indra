@@ -4,6 +4,7 @@ frameworkVersion: "3"
 
 plugins:
   - serverless-openapi-documenter
+
 custom:
   documentation:
     api:
@@ -27,6 +28,7 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:PostItem
+        - dynamodb:DeleteItem
       Resource: "*"
 
 resources:
@@ -47,7 +49,7 @@ resources:
 
 functions:
   uploadCharacter:
-    handler: api/character.upload
+    handler: api/character/controller/handler.uploadCharacter
     memorySize: 128
     description: Upload Star Wars character
     events:
@@ -56,7 +58,7 @@ functions:
           method: post
 
   getByIdCharacter:
-    handler: api/character.getById
+    handler: api/character/controller/handler.getCharacterById
     memorySize: 128
     description: Get Star Wars character by ID
     events:
@@ -65,7 +67,7 @@ functions:
           method: get
 
   getAllCharacters:
-    handler: api/character.getAll
+    handler: api/character/controller/handler.getAllCharacters
     memorySize: 128
     description: Get all Star Wars characters
     events:
@@ -74,7 +76,7 @@ functions:
           method: get
 
   getAllCharactersSwapi:
-    handler: api/character.getAllCharactersFromSWAPI
+    handler: api/character/controller/handler.getAllCharactersFromSWAPI
     memorySize: 128
     description: Get all characters from SWAPI
     events:
@@ -83,10 +85,22 @@ functions:
           method: get
 
   deleteCharacter:
-    handler: api/character.deleteCharacter
+    handler: api/character/controller/handler.deleteCharacter
     memorySize: 128
     description: Delete Star Wars character by ID
     events:
       - http:
           path: character/{id}
           method: delete
+
+  openapiDocumentation:
+    handler: api/openapi/documentation.handler
+    memorySize: 128
+    description: OpenAPI Documentation
+    events:
+      - http:
+          path: /swagger
+          method: get
+      - http:
+          path: /swagger.json
+          method: get

@@ -1,4 +1,4 @@
-const { getById } = require("../api/character");
+const { getById } = require("../api/character/services/getById");
 
 /**
  * Pruebas unitarias para la función getById.

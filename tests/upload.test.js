@@ -1,4 +1,4 @@
-const { upload } = require("../api/character");
+const { upload } = require("../api/character/services/uploadCharacter");
 
 /**
  * Pruebas unitarias para la función upload.

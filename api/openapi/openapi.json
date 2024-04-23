@@ -1,0 +1,214 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Star Wars Characters API",
+    "description": "API for managing Star Wars characters.",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/dev/character": {
+      "post": {
+        "summary": "Upload Star Wars character",
+        "description": "Uploads a new Star Wars character to the database.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CharacterInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Character saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CharacterResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/dev/character/{id}": {
+      "get": {
+        "summary": "Get Star Wars character by ID",
+        "description": "Retrieves information about a Star Wars character by their ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the character",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Character"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Character not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Star Wars character by ID",
+        "description": "Deletes a Star Wars character from the database by their ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "ID of the character",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Character deleted successfully"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/dev/characters": {
+      "get": {
+        "summary": "Get all Star Wars characters",
+        "description": "Retrieves information about all Star Wars characters stored in the database.",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Character"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/dev/swapi/characters": {
+      "get": {
+        "summary": "Get all characters from SWAPI",
+        "description": "Retrieves information about all characters from the SWAPI (Star Wars API).",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwapiCharacter"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "CharacterInput": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "height": { "type": "string" },
+          "mass": { "type": "string" },
+          "hair_color": { "type": "string" },
+          "skin_color": { "type": "string" },
+          "eye_color": { "type": "string" },
+          "birth_year": { "type": "string" },
+          "gender": { "type": "string" }
+        },
+        "required": [
+          "name",
+          "height",
+          "mass",
+          "hair_color",
+          "skin_color",
+          "eye_color",
+          "birth_year",
+          "gender"
+        ]
+      },
+      "CharacterResponse": {
+        "type": "object",
+        "properties": {
+          "message": { "type": "string" },
+          "characterId": { "type": "string" }
+        }
+      },
+      "Character": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "nombre": { "type": "string" },
+          "altura": { "type": "string" },
+          "peso": { "type": "string" },
+          "colorPelo": { "type": "string" },
+          "colorPiel": { "type": "string" },
+          "colorOjos": { "type": "string" },
+          "fechaNacimiento": { "type": "string" },
+          "genero": { "type": "string" }
+        }
+      },
+      "SwapiCharacter": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "height": { "type": "string" },
+          "mass": { "type": "string" },
+          "hair_color": { "type": "string" },
+          "skin_color": { "type": "string" },
+          "eye_color": { "type": "string" },
+          "birth_year": { "type": "string" },
+          "gender": { "type": "string" }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-const { getAll } = require("../api/character");
+const { getAll } = require("../api/character/services/getAllCharacters");
 
 /**
  * Pruebas unitarias para la función getAll.
