@@ -7,7 +7,7 @@ Arquitectura con API Gateway, lambdas y DynamoDB. Se utiliza el api de Star Wars
 git clone https://github.com/Frany-oss/reto-indra.git
 ```
 ```bash
-cd reto-indra
+cd sarwars-api
 ```
 ### Instalar las dependencias necesarias
 ```bash
