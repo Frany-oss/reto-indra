@@ -1,5 +1,5 @@
 # Documentacion
-Reto tecnico de Indra. Arquitectura con API Gateway, lambdas y DynamoDB. Se utiliza el api de Star Wars (swapi)
+Arquitectura con API Gateway, lambdas y DynamoDB. Se utiliza el api de Star Wars (swapi)
 
 
 ## Configuracion inicial
